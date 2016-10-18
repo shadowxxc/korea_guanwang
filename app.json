@@ -1,0 +1,56 @@
+{
+  "pages":[
+    "pages/lizimz/main/main",
+    "pages/lizimz/category/category",
+    "pages/lizimz/liziquan/liziquan",
+    "pages/lizimz/shopcart/shopcart",
+    "pages/lizimz/me/me",
+    "pages/lizimz/detail/detail",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "WeChat",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#ff666b",
+    "borderStyle": "white",
+    "list": [
+      {
+        "pagePath": "pages/lizimz/main/main",
+        "text": "首页",
+        "iconPath": "images/icon_home.png",
+        "selectedIconPath": "images/icon_home_filled.png"
+      },
+      {
+        "pagePath": "pages/lizimz/category/category",
+        "text": "操作反馈",
+        "iconPath": "images/icon_category.png",
+        "selectedIconPath": "images/icon_category_filled.png"
+      },
+      {
+        "pagePath": "pages/lizimz/liziquan/liziquan",
+        "text": "海贝社区",
+        "iconPath": "images/icon_lizi.png",
+        "selectedIconPath": "images/icon_lizi_filled.png"
+      },
+      {
+        "pagePath": "pages/lizimz/shopcart/shopcart",
+        "text": "购物车",
+        "iconPath": "images/icon_shopcart.png",
+        "selectedIconPath": "images/icon_shopcart_filled.png"
+      },
+      {
+        "pagePath": "pages/lizimz/me/me",
+        "text": "我的",
+        "iconPath": "images/icon_me.png",
+        "selectedIconPath": "images/icon_me_filled.png"
+      }
+
+    ]
+  }
+}

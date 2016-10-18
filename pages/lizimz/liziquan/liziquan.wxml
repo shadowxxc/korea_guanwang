@@ -1,0 +1,14 @@
+<scroll-view  style="height: {{windowHeight}}px; width:100%;" scroll-y="true" bindscrolltolower="pullUpLoad" >
+  <view>
+    <audio style="width:100%;" poster="{{poster}}" name="{{name}}" src="{{src}}" action="{{action}}" author="{{author}}" controls loop></audio>
+  </view>
+  <view wx:for="{{list}}" class="li">
+    <text class="uselist">{{list[index].nickName}}</text>
+    <image class="audio" src="{{list[index].images}}" mode="scaleToFill" ></image>
+    <em class="text">{{list[index].content}}</em>
+    <!-- <text>{{list[index].description}}</text> -->
+  </view>
+  <view hidden="{{loadmoreHidden}}" bindchange="loadingChange">
+    <button style="border:0;" class="noborder" plain="true" loading="true">努力加载中...</button>
+  </view>
+</scroll-view>

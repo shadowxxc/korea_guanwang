@@ -1,0 +1,165 @@
+<view class="main-container">
+
+  <scroll-view   class="main-nav" scroll-x="{{true}}" >
+    <ul >
+      <!-- style="left:-{{current*50}}px;" -->
+      <li class="{{current == 0 ? 'active' : ''}}" catchtap="switchSlider" data-index="0">推荐</li>
+      <li class="{{current == 1 ? 'active' : ''}}" catchtap="switchSlider" data-index="1">海外直购</li>
+      <li class="{{current == 2 ? 'active' : ''}}" catchtap="switchSlider" data-index="2">发现</li>
+      <li class="{{current == 3 ? 'active' : ''}}" catchtap="switchSlider" data-index="3">美妆</li>
+      <li class="{{current == 4 ? 'active' : ''}}" catchtap="switchSlider" data-index="4">母婴</li>
+      <li class="{{current == 5 ? 'active' : ''}}" catchtap="switchSlider" data-index="5">健康生活</li>
+      <li class="{{current == 6 ? 'active' : ''}}" catchtap="switchSlider" data-index="6">家居日用</li>
+      <li class="{{current == 7 ? 'active' : ''}}" catchtap="switchSlider" data-index="7">服饰鞋包</li>
+    </ul>
+  </scroll-view>
+
+  <swiper class="main-list" indicator-dots="{{swiper.indicatorDots}}" autoplay="{{swiper.autoplay}}" interval="{{swiper.interval}}" duration="{{swiper.duration}}" current="{{current}}" bindchange="changeSlider">
+    <block>
+
+      <!--*************************************** 首页模块丽子  -->
+      <swiper-item class="indexlizi">
+        <!--banner图  -->
+        <swiper class="bannerswipper" indicator-dots="{{swiper2.indicatorDots}}" autoplay="{{swiper2.autoplay}}" interval="{{swiper2.interval}}" duration="{{swiper2.duration}}">
+          <block >
+            <swiper-item  wx:for="{{[1,2,3,4,5,6,7]}}">
+              <image  src="/images/banner{{index+1}}.jpg" mode="scaleToFill"></image>
+            </swiper-item>
+          </block>
+        </swiper>
+        <!-- 菜单栏 -->
+        <ul class="selectul">
+          <li><image src="/images/select1.png"></image><em>每日福利</em></li>
+          <li><image src="/images/select2.png"></image><em>60s闪购</em></li>
+          <li><image src="/images/select3.png"></image><em>N元N件</em></li>
+          <li><image src="/images/select4.png"></image><em>新人礼包</em></li>
+        </ul>
+        <view class="popularActivity">
+          <image  wx:for="{{popularActivity}}" src="{{popularActivity[index].img}}" mode="scaleToFill" ></image>
+        </view>
+          <view class="hotProduct">
+            <text>单品推荐</text>
+            <view class="hotProductul">
+
+              <scroll-view  style="height: {{windowHeight}}px; width:100%;" scroll-y="true" bindscrolltolower="pullUpLoad" >
+               <view wx:for="{{hotProduct}}" class="hotProductli">
+                 <navigator url="../detail/detail?title={{hotProduct[index].productTitle}}&des={{hotProduct[index].description}}&min={{hotProduct[index].productPrice}}&img={{hotProduct[index].productImg}}">
+                   <image src="{{hotProduct[index].productImg}}" mode="scaleToFill" ></image>
+                   <em>{{hotProduct[index].productTitle}}</em>
+                   <text>{{hotProduct[index].description}}</text>
+                 </navigator>
+               </view>
+               <view hidden="{{loadmoreHidden}}" bindchange="loadingChange">
+                 <button style="border:0;" class="noborder" plain="true" loading="true">努力加载中...</button>
+               </view>
+              </scroll-view>
+            </view>
+          </view>
+
+
+      </swiper-item>
+
+      <!--*************************************** 首页模块TOP单品  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="haiwaizhigouul">
+          <view wx:for="{{haiwaiProduct}}" class="haiwaizhigouli">
+            <navigator url="../detail/detail?title={{haiwaiProduct[index].productTitle}}&des={{haiwaiProduct[index].copyWriter}}&max={{haiwaiProduct[index].highPrice}}&min={{haiwaiProduct[index].salePrice}}&img={{haiwaiProduct[index].photourl}}">
+              <image src="{{haiwaiProduct[index].photourl}}" mode="scaleToFill" ></image>
+              <em>{{haiwaiProduct[index].productTitle}}</em>
+              <text class="salePrice">￥{{haiwaiProduct[index].salePrice}}</text>
+              <text class="highPrice">￥{{haiwaiProduct[index].highPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块潮流新品  -->
+      <swiper-item class="faxian">
+        <view class="faxianul">
+          <view wx:for="{{faxianProduct}}" class="faxianli">
+            <navigator url="../detail/detail?title={{faxianProduct[index].productTitle}}&des={{faxianProduct[index].description}}&min={{faxianProduct[index].productPrice}}&img={{faxianProduct[index].picUrl}}">
+              <image src="{{faxianProduct[index].picUrl}}" mode="scaleToFill" ></image>
+              <em>{{faxianProduct[index].productTitle}}</em>
+              <text class="faxianproduce">{{faxianProduct[index].description}}</text>
+              <text class="productPrice">￥{{faxianProduct[index].productPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块补水保湿  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="haiwaizhigouul">
+          <view wx:for="{{meizhuangProduct}}" class="haiwaizhigouli meizhuangli">
+            <navigator url="../detail/detail?title={{meizhuangProduct[index].productTitle}}&des={{meizhuangProduct[index].copyWriter}}&max={{meizhuangProduct[index].highPrice}}&min={{meizhuangProduct[index].salePrice}}&img={{meizhuangProduct[index].photourl}}">
+              <image src="{{meizhuangProduct[index].photourl}}" mode="scaleToFill" ></image>
+              <em>{{meizhuangProduct[index].productTitle}}</em>
+              <text class="salePrice">￥{{meizhuangProduct[index].salePrice}}</text>
+              <text class="highPrice">￥{{meizhuangProduct[index].highPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块防晒美白  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="haiwaizhigouul">
+          <view wx:for="{{muyingProduct}}" class="haiwaizhigouli meizhuangli">
+            <navigator url="../detail/detail?title={{muyingProduct[index].productTitle}}&des={{muyingProduct[index].copyWriter}}&max={{muyingProduct[index].highPrice}}&min={{muyingProduct[index].salePrice}}&img={{muyingProduct[index].photourl}}">
+              <image src="{{muyingProduct[index].photourl}}" mode="scaleToFill" ></image>
+              <em>{{muyingProduct[index].productTitle}}</em>
+              <text class="salePrice">￥{{muyingProduct[index].salePrice}}</text>
+              <text class="highPrice">￥{{muyingProduct[index].highPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块底妆隔离  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="haiwaizhigouul">
+          <view wx:for="{{jiankangProduct}}" class="haiwaizhigouli meizhuangli">
+            <navigator url="../detail/detail?title={{jiankangProduct[index].productTitle}}&des={{jiankangProduct[index].copyWriter}}&max={{jiankangProduct[index].highPrice}}&min={{jiankangProduct[index].salePrice}}&img={{jiankangProduct[index].photourl}}">
+              <image src="{{jiankangProduct[index].photourl}}" mode="scaleToFill" ></image>
+              <em>{{jiankangProduct[index].productTitle}}</em>
+              <text class="salePrice">￥{{jiankangProduct[index].salePrice}}</text>
+              <text class="highPrice">￥{{jiankangProduct[index].highPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块洗发护发  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="haiwaizhigouul">
+          <view wx:for="{{jiajuProduct}}" class="haiwaizhigouli meizhuangli">
+            <navigator url="../detail/detail?title={{jiajuProduct[index].productTitle}}&des={{jiajuProduct[index].copyWriter}}&max={{jiajuProduct[index].highPrice}}&min={{jiajuProduct[index].salePrice}}&img={{jiajuProduct[index].photourl}}">
+              <image src="{{jiajuProduct[index].photourl}}" mode="scaleToFill" ></image>
+              <em>{{jiajuProduct[index].productTitle}}</em>
+              <text class="salePrice">￥{{jiajuProduct[index].salePrice}}</text>
+              <text class="highPrice">￥{{jiajuProduct[index].highPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+      <!--*************************************** 首页模块化妆工具  -->
+      <swiper-item class="haiwaizhigou">
+        <view class="faxianul">
+          <view wx:for="{{fushiProduct}}" class="faxianli">
+            <navigator url="../detail/detail?title={{fushiProduct[index].productTitle}}&des={{fushiProduct[index].description}}&min={{fushiProduct[index].productPrice}}&img={{fushiProduct[index].picUrl}}">
+              <image src="{{fushiProduct[index].picUrl}}" mode="scaleToFill" ></image>
+              <em>{{fushiProduct[index].productTitle}}</em>
+              <text class="faxianproduce">{{fushiProduct[index].description}}</text>
+              <text class="productPrice">￥{{fushiProduct[index].productPrice}}</text>
+            </navigator>
+          </view>
+        </view>
+      </swiper-item>
+
+    </block>
+  </swiper>
+  <ul>
+    <li></li>
+  </ul>
+</view>
